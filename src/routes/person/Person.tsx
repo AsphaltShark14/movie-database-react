@@ -1,7 +1,7 @@
 export const Person = () => {
-    return (
-        <div>
-            <p>Person Page</p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>Person Page</p>
+    </div>
+  );
+};

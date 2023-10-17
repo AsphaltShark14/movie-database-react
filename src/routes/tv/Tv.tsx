@@ -1,9 +1,7 @@
 export const Tv = () => {
-    return (
-        <div>
-            <p>
-                TV page
-            </p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>TV page</p>
+    </div>
+  );
+};

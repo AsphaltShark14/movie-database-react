@@ -1,9 +1,7 @@
 export const Search = () => {
-    return (
-        <div>
-            <p>
-                Search Page
-            </p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>Search Page</p>
+    </div>
+  );
+};
