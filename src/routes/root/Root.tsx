@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Footer } from "../../modules/Footer/Footer";
 import { getMovieGenres, getMovieGenresQueryKey } from "../../services/tmdb";
 
 export const Root = () => {
@@ -9,5 +10,10 @@ export const Root = () => {
 
   console.log(query.data);
 
-  return <div>Root</div>;
+  return (
+    <div>
+      <p>Root</p>
+      <Footer />
+    </div>
+  );
 };

@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components/Navbar/Navbar";
+import { Navbar } from "../modules/Navbar/Navbar";
 
 export const Layout = () => {
   return (
-    <div className="flex w-screen h-screen">
+    <div className="flex w-screen h-screen md:flex-row">
       <Navbar />
-      <Outlet />
+      <main className="w-full max-w-full overflow-x-hidden">
+        <Outlet />
+      </main>
     </div>
   );
 };
