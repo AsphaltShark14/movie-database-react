@@ -1,7 +1,7 @@
 
 import './App.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Root } from './components/Root/Root';
+import { Root } from './routes/root/Root';
 
 function App() {
   const queryClient = new QueryClient()
