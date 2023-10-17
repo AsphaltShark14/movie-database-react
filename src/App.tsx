@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import { ErrorPage } from "./routes/ErrorPage/ErrorPage";
+import { Layout } from "./routes/Layout";
 import { Movie } from "./routes/movie/Movie";
 import { Root } from "./routes/root/Root";
 import { Search } from "./routes/search/Search";
@@ -13,21 +14,26 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: paths.index,
-      element: <Root />,
+      element: <Layout />,
       errorElement: <ErrorPage />,
-    },
-    {
-      path: paths.movies,
-      element: <Movie />,
-    },
-    {
-      path: paths.tv,
-      element: <Tv />,
-    },
-    {
-      path: paths.search,
-      element: <Search />,
+      children: [
+        {
+          path: paths.index,
+          element: <Root />,
+        },
+        {
+          path: paths.movies,
+          element: <Movie />,
+        },
+        {
+          path: paths.tv,
+          element: <Tv />,
+        },
+        {
+          path: paths.search,
+          element: <Search />,
+        },
+      ],
     },
   ]);
 
