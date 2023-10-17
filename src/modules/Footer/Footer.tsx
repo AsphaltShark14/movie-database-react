@@ -1,4 +1,4 @@
-import Github from "../../media/resources/github.svg";
+import Github from "~/media/github.svg";
 
 export const Footer = () => {
   return (
@@ -12,7 +12,7 @@ export const Footer = () => {
           Nuxt Movies
         </a>
       </div>
-      <div className="flex items-center text-sm opacity-80">
+      <div className="flex gap-2 items-center text-sm opacity-80">
         This product uses the{" "}
         <a className="link" href="https://www.themoviedb.org/documentation/api">
           TMDB API
