@@ -1,6 +1,6 @@
 import { QueryFunction } from "react-query";
 import { jsonFetcher } from "./fetcher";
-import { Collection, Genre, MovieBase, TvBase } from "./types";
+import { Collection, Genre, MediaDetails, MovieBase, TvBase } from "./types";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -62,4 +62,28 @@ export const getRandomHeroMedia = <T>({
   const items = collections.flatMap((collection) => collection.results || []);
   const randomItem = items[Math.floor(Math.random() * items.length)];
   return randomItem;
+};
+
+type GetSearchResultArgs = {
+  query: string;
+  isAdult?: boolean;
+};
+
+export const getSearchResultsQueryKey = (args: GetSearchResultArgs) => {
+  return ["searchResults", args] as const;
+};
+
+export const getSearchResults: QueryFunction<
+  Collection<MediaDetails>,
+  ReturnType<typeof getSearchResultsQueryKey>
+> = ({ queryKey: [, args], pageParam = 1 }) => {
+  return jsonFetcher({
+    path: `/search/multi`,
+    query: {
+      query: args.query,
+      include_adult: args.isAdult,
+      page: pageParam,
+      api_key: apiKey,
+    },
+  });
 };
