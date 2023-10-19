@@ -18,4 +18,6 @@ export const paths = {
   likes: "/likes",
   movie: "/movie/:movieId",
   tvShow: "/tv/:tvId",
+  movieInfoPhotos: "/movie/:movieId/photos",
+  movieInfoVideos: "/movie/:movieId/videos",
 };

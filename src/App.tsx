@@ -7,6 +7,9 @@ import { Root } from "./routes/Root";
 import { Likes } from "./routes/likes/Likes";
 import { Movies } from "./routes/movie/Movies";
 import { Movie } from "./routes/movie/[movieId]/Movie";
+import { Overview } from "./routes/movie/[movieId]/Overview/Overview";
+import { MoviePhotos } from "./routes/movie/[movieId]/Photos/MoviePhotos";
+import { MovieVideos } from "./routes/movie/[movieId]/Videos/MovieVideos";
 import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
 import { TvShow } from "./routes/tv/[tvId]/TvShow";
@@ -43,6 +46,20 @@ function App() {
         {
           path: paths.movie,
           element: <Movie />,
+          children: [
+            {
+              path: paths.movie,
+              element: <Overview />,
+            },
+            {
+              path: paths.movieInfoPhotos,
+              element: <MoviePhotos />,
+            },
+            {
+              path: paths.movieInfoVideos,
+              element: <MovieVideos />,
+            },
+          ],
         },
         {
           path: paths.tvShow,

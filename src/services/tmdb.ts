@@ -1,6 +1,13 @@
 import { QueryFunction } from "react-query";
 import { jsonFetcher } from "./fetcher";
-import { Collection, Genre, MediaBase, MovieBase, TvBase } from "./types";
+import {
+  Collection,
+  Genre,
+  MediaBase,
+  MovieBase,
+  MovieExtraDetails,
+  TvBase,
+} from "./types";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -140,4 +147,27 @@ export const getTvSeries: QueryFunction<
   }));
 
   return { ...result, results };
+};
+
+type GetMovieArgs = {
+  id: string;
+};
+
+export const getMovieQueryKey = (args: GetMovieArgs) => {
+  return ["movie", args] as const;
+};
+
+export const getMovie: QueryFunction<
+  MovieExtraDetails,
+  ReturnType<typeof getMovieQueryKey>
+> = async ({ queryKey: [, args] }) => {
+  const result = await jsonFetcher<MovieExtraDetails>({
+    path: `/movie/${args.id}`,
+    query: {
+      api_key: apiKey,
+      append_to_response: "videos,credits,images,external_ids",
+      include_image_language: "en",
+    },
+  });
+  return { ...result, media_type: "movie" as const };
 };

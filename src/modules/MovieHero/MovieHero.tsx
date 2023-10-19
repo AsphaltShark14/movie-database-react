@@ -4,9 +4,10 @@ import { MovieBase } from "../../services/types";
 
 type MovieHeroProps = {
   media: MovieBase;
+  isDescription?: boolean;
 };
 
-export const MovieHero = ({ media }: MovieHeroProps) => {
+export const MovieHero = ({ media, isDescription = true }: MovieHeroProps) => {
   return (
     <section className="bg-black">
       <div className="relative aspect-square md:aspect-[3/2] lg:aspect-[25/9]">
@@ -30,9 +31,11 @@ export const MovieHero = ({ media }: MovieHeroProps) => {
               <div className="text-sm text-gray-100 opacity-80">{`${media.vote_count} Reviews`}</div>
             </div>
           </div>
-          <div className="text-left text-gray-100 line-clamp-[8]">
-            {media.overview}
-          </div>
+          {isDescription ? (
+            <div className="text-left text-gray-100 overflow-auto">
+              {media.overview}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
