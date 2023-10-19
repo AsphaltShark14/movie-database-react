@@ -27,10 +27,12 @@ export const MovieHero = ({ media }: MovieHeroProps) => {
           <div>
             <div className="flex flex-row gap-4">
               <Stars rating={media.vote_average} />
-              <div className="text-sm opacity-80">{`${media.vote_count} Reviews`}</div>
+              <div className="text-sm text-gray-100 opacity-80">{`${media.vote_count} Reviews`}</div>
             </div>
           </div>
-          <div className="text-left line-clamp-[8]">{media.overview}</div>
+          <div className="text-left text-gray-100 line-clamp-[8]">
+            {media.overview}
+          </div>
         </div>
       </div>
     </section>

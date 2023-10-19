@@ -77,7 +77,6 @@ export const getSearchResults: QueryFunction<
   Collection<MediaBase>,
   ReturnType<typeof getSearchResultsQueryKey>
 > = ({ queryKey: [, args], pageParam = 1 }) => {
-  console.log(pageParam);
   return jsonFetcher<Collection<MediaBase>>({
     path: `/search/multi`,
     query: {
@@ -87,4 +86,30 @@ export const getSearchResults: QueryFunction<
       api_key: apiKey,
     },
   });
+};
+
+type GetMoviesArgs = {
+  query: string;
+};
+
+export const getMoviesQueryKey = (args: GetMoviesArgs) => {
+  return ["movies", args] as const;
+};
+
+export const getMovies: QueryFunction<
+  Collection<MovieBase>,
+  ReturnType<typeof getMoviesQueryKey>
+> = async ({ queryKey: [, args], pageParam = 1 }) => {
+  const result = await jsonFetcher<Collection<MovieBase>>({
+    path: `/movie/${args.query}`,
+    query: {
+      api_key: apiKey,
+      page: pageParam,
+    },
+  });
+  const results = result.results?.map((item) => ({
+    ...item,
+    media_type: "movie" as const,
+  }));
+  return { ...result, results };
 };
