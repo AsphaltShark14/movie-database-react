@@ -24,14 +24,16 @@ export const TvSeriesHero = ({ media }: TvSeriesHeroProps) => {
             {media.name || media.original_name}
           </h1>
           <div>
-            <div className="flex flex-row gap-2 opacity-80 whitespace-nowrap">
+            <div className="flex flex-row gap-2 opacity-80 whitespace-nowrap text-gray-100">
               <div>
                 <div>{media.vote_average}</div>
               </div>
               <div>{`${media.vote_count} Reviews`}</div>
             </div>
           </div>
-          <div className="text-left line-clamp-[8]">{media.overview}</div>
+          <div className="text-left text-gray-100 line-clamp-[7]">
+            {media.overview}
+          </div>
         </div>
       </div>
     </section>

@@ -7,7 +7,7 @@ import { paths } from "~/utils/paths";
 export const Navbar = () => {
   return (
     <nav className="bg-black px-4 py-8 text-black">
-      <ul className="flex justify-around gap-10 md:w-10 md:flex-col md:justify-start">
+      <ul className="flex flex-wrap content-center justify-around gap-10 md:w-10 md:flex-col md:justify-start">
         <li className="hover:opacity-80">
           <a href={paths.index}>
             <img alt="home" src={Home} aria-label="home" className="h-6 w-6" />

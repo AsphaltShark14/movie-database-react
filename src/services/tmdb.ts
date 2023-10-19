@@ -113,3 +113,31 @@ export const getMovies: QueryFunction<
   }));
   return { ...result, results };
 };
+
+type GetTvSeriesArgs = {
+  query: string;
+};
+
+export const getTvSeriesQueryKey = (args: GetTvSeriesArgs) => {
+  return ["tvSeries", args] as const;
+};
+
+export const getTvSeries: QueryFunction<
+  Collection<TvBase>,
+  ReturnType<typeof getTvSeriesQueryKey>
+> = async ({ queryKey: [, args], pageParam = 1 }) => {
+  const result = await jsonFetcher<Collection<TvBase>>({
+    path: `/tv/${args.query}`,
+    query: {
+      api_key: apiKey,
+      page: pageParam,
+    },
+  });
+
+  const results = result.results?.map((item) => ({
+    ...item,
+    media_type: "tv" as const,
+  }));
+
+  return { ...result, results };
+};
