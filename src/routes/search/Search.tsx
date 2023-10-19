@@ -1,9 +1,8 @@
-import { useVirtualizer } from "@tanstack/react-virtual";
-import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useDebounce } from "use-debounce";
-import { MediaCard } from "../../components/MediaCard/MediaCard";
 import SearchIcon from "../../media/search.svg";
+import { MediaGrid } from "../../modules/MediaGrid/MediaGrid";
 import {
   getSearchResults,
   getSearchResultsQueryKey,
@@ -36,42 +35,21 @@ export const Search = () => {
   });
 
   const collection = useMemo(() => {
-    return query.data ? query.data.pages.flatMap((page) => page.results) : [];
+    if (!query.data) {
+      return [];
+    }
+
+    const flatQuery = query.data.pages.flatMap((page) =>
+      page.results ? page.results : []
+    );
+    return flatQuery;
   }, [query.data]);
 
-  const rowVirualizer = useVirtualizer({
-    count: query.hasNextPage ? collection.length + 1 : collection.length,
-    getScrollElement: () => containerRef.current,
-    estimateSize: () => 100,
-    overscan: 5,
-    horizontal: true,
-  });
-
-  useEffect(() => {
-    const [lastItem] = [...rowVirualizer.getVirtualItems().reverse()];
-
-    if (!lastItem) {
-      return;
-    }
-
-    if (
-      lastItem.index >= collection.length - 1 &&
-      query.hasNextPage &&
-      !query.isFetchingNextPage
-    ) {
+  const onEndReached = useCallback((atBottom: boolean) => {
+    if (atBottom) {
       query.fetchNextPage();
     }
-  }, [
-    query.hasNextPage,
-    query.fetchNextPage,
-    collection.length,
-    query.isFetchingNextPage,
-    rowVirualizer.getVirtualItems(),
-  ]);
-
-  console.log(query.data);
-
-  const containerRef = useRef<HTMLDivElement>(null);
+  }, []);
 
   return (
     <div className="flex max-h-screen flex-col">
@@ -96,24 +74,7 @@ export const Search = () => {
           Search
         </button>
       </form>
-      <div className="flex flex-col h-100 overflow-y-scroll" ref={containerRef}>
-        <section>
-          <div
-            style={{
-              height: `${rowVirualizer.getTotalSize()}px`,
-              width: "100%",
-              position: "relative",
-            }}
-          >
-            {rowVirualizer.getVirtualItems().map((virtualRow) => {
-              const isLoaderRow = virtualRow.index > collection.length - 1;
-              const card = collection[virtualRow.index];
-
-              return <MediaCard key={virtualRow.index} media={card} />;
-            })}
-          </div>
-        </section>
-      </div>
+      <MediaGrid collection={collection} onEndReached={onEndReached} />
     </div>
   );
 };

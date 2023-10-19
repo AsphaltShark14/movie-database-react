@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-virtual": "^3.0.0-beta.65",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.17.0",
+    "react-virtuoso": "^4.6.2",
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {

@@ -1,67 +1,39 @@
+import { VirtuosoGrid, VirtuosoHandle } from "react-virtuoso";
 import { MediaCard } from "../../components/MediaCard/MediaCard";
 import { MediaBase } from "../../services/types";
+import { useCallback, useRef } from "react";
 
 type MediaGridProps = {
   collection: MediaBase[];
-  // currentPage: number;
-  // onMore?: () => void;
-  // pageCount: number;
-  // parentContainer?: RefObject<HTMLDivElement>;
+  onEndReached: (atBottom: boolean) => void;
 };
 
 export const MediaGrid = ({
   collection,
-}: // currentPage,
-// onMore,
-// pageCount,
-// parentContainer,
+  onEndReached
+}:
 MediaGridProps) => {
-  // const [isThrottle, setThrottle] = useState(true);
-  // const [hasScroll, setScroll] = useState(true);
+  const virutosoRef = useRef<VirtuosoHandle>(null);
+  
+  const itemContent = useCallback((_index: number, media?: MediaBase) => {
+    if (!media) {
+      return;
+    }
 
-  // const handleScroll = () => {
-  //   if (!parentContainer?.current) {
-  //     return;
-  //   }
-
-  //   const endOfPage =
-  //     parentContainer.current.clientHeight +
-  //       parentContainer.current.scrollTop >=
-  //     parentContainer.current.scrollHeight - 100;
-
-  //   console.log({
-  //     clientHeight: parentContainer.current.clientHeight,
-  //     scrollTop: parentContainer.current.scrollTop,
-  //     scrollHeight: parentContainer.current.scrollHeight,
-  //   });
-
-  //   if (endOfPage) {
-  //     onMore?.();
-  //   }
-
-  //   if (currentPage === pageCount) {
-  //     setScroll(false);
-  //   }
-  // };
+    return <MediaCard media={media} />;
+  }, []);
 
   return (
     <section>
-      <div
-        // onScroll={() => {
-        //   if (isThrottle || !hasScroll) {
-        //     return;
-        //   }
-        //   setThrottle(true);
-        //   setTimeout(() => {
-        //     handleScroll();
-        //     setThrottle(false);
-        //   }, 1000);
-        // }}
-        className="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-4 p-8"
-      >
-        {collection?.map((media) => (
-          <MediaCard key={media.id} media={media} />
-        ))}
+      <div className="flex w-full h-screen">
+        <VirtuosoGrid
+          ref={virutosoRef}
+          data={collection}
+          itemContent={itemContent}
+          atBottomStateChange={onEndReached}
+          listClassName="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] p-8"
+          className="w-full"
+        />
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { QueryFunction } from "react-query";
 import { jsonFetcher } from "./fetcher";
-import { Collection, Genre, MediaDetails, MovieBase, TvBase } from "./types";
+import { Collection, Genre, MediaBase, MovieBase, TvBase } from "./types";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -74,10 +74,11 @@ export const getSearchResultsQueryKey = (args: GetSearchResultArgs) => {
 };
 
 export const getSearchResults: QueryFunction<
-  Collection<MediaDetails>,
+  Collection<MediaBase>,
   ReturnType<typeof getSearchResultsQueryKey>
 > = ({ queryKey: [, args], pageParam = 1 }) => {
-  return jsonFetcher({
+  console.log(pageParam);
+  return jsonFetcher<Collection<MediaBase>>({
     path: `/search/multi`,
     query: {
       query: args.query,
