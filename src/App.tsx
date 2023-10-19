@@ -4,9 +4,12 @@ import "./App.css";
 import { ErrorPage } from "./routes/ErrorPage/ErrorPage";
 import { Layout } from "./routes/Layout";
 import { Root } from "./routes/Root";
-import { Movie } from "./routes/movie/Movie";
+import { Likes } from "./routes/likes/Likes";
+import { Movies } from "./routes/movie/Movies";
+import { Movie } from "./routes/movie/[movieId]/Movie";
 import { Search } from "./routes/search/Search";
-import { Tv } from "./routes/tv/Tv";
+import { TvSeries } from "./routes/tv/TvSeries";
+import { TvShow } from "./routes/tv/[tvId]/TvShow";
 import { paths } from "./utils/paths";
 
 function App() {
@@ -23,15 +26,27 @@ function App() {
         },
         {
           path: paths.movies,
-          element: <Movie />,
+          element: <Movies />,
         },
         {
           path: paths.tv,
-          element: <Tv />,
+          element: <TvSeries />,
         },
         {
           path: paths.search,
           element: <Search />,
+        },
+        {
+          path: paths.likes,
+          element: <Likes />,
+        },
+        {
+          path: paths.movie,
+          element: <Movie />,
+        },
+        {
+          path: paths.tvShow,
+          element: <TvShow />,
         },
       ],
     },

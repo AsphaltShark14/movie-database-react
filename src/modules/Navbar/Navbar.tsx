@@ -1,3 +1,4 @@
+import Heart from "~/media/heart.svg";
 import Home from "~/media/home.svg";
 import Movie from "~/media/movie.svg";
 import Search from "~/media/search.svg";
@@ -34,6 +35,16 @@ export const Navbar = () => {
               alt="search"
               src={Search}
               aria-label="search"
+              className="h-6 w-6"
+            />
+          </a>
+        </li>
+        <li className="hover:opacity-80">
+          <a href={paths.likes}>
+            <img
+              alt="likes"
+              src={Heart}
+              aria-label="likes"
               className="h-6 w-6"
             />
           </a>

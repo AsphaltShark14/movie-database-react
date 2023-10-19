@@ -15,4 +15,7 @@ export const paths = {
   search: "/search",
   tv: "/tv",
   tvCategory: (category: string) => `/tv/categories/${category}`,
+  likes: "/likes",
+  movie: "/movie/:movieId",
+  tvShow: "/tv/:tvId",
 };

@@ -10,7 +10,7 @@ import {
 import { getListItem } from "../../utils/format";
 import { paths } from "../../utils/paths";
 
-export const Movie = () => {
+export const Movies = () => {
   const popularQuery = useQuery({
     queryFn: getMovies,
     queryKey: getMoviesQueryKey({ query: "popular" }),

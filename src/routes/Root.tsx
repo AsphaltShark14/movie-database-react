@@ -38,8 +38,16 @@ export const Root = () => {
 
   return (
     <div>
-      {random.media_type === "movie" ? <MovieHero media={random} /> : null}
-      {random.media_type === "tv" ? <TvSeriesHero media={random} /> : null}
+      {random.media_type === "movie" ? (
+        <a href={paths.media("movie", random.id)}>
+          <MovieHero media={random} />
+        </a>
+      ) : null}
+      {random.media_type === "tv" ? (
+        <a href={paths.media("tv", random.id)}>
+          <TvSeriesHero media={random} />
+        </a>
+      ) : null}
       {movies.results ? (
         <MediaCarousel
           collection={movies.results}

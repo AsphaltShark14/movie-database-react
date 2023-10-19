@@ -10,7 +10,7 @@ import {
 import { getListItem } from "../../utils/format";
 import { paths } from "../../utils/paths";
 
-export const Tv = () => {
+export const TvSeries = () => {
   const popularQuery = useQuery({
     queryFn: getTvSeries,
     queryKey: getTvSeriesQueryKey({ query: "popular" }),
@@ -55,7 +55,7 @@ export const Tv = () => {
   return (
     <div className="flex max-h-screen flex-col gap-4 overflow-y-scroll">
       {random ? (
-        <a href={paths.media("movie", random.id)}>
+        <a href={paths.media("tv", random.id)}>
           <TvSeriesHero media={random} />
         </a>
       ) : null}
