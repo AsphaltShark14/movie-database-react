@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { getPoster, getPosterSet } from "../../services/images";
 import { MediaBase } from "../../services/types";
 import { paths } from "../../utils/paths";
@@ -16,7 +17,7 @@ export const MediaCard = ({ media }: MediaCardProps) => {
   }, [media]);
 
   return (
-    <a href={paths.media(media.media_type, media.id)} className="w-48">
+    <Link to={paths.media(media.media_type, media.id)} className="w-48">
       {!!media.poster_path ? (
         <div className="transition-scale scale-95 duration-300 ease-in-out hover:scale-100">
           <picture>
@@ -40,6 +41,6 @@ export const MediaCard = ({ media }: MediaCardProps) => {
           <Stars rating={media.vote_average} />
         </div>
       </div>
-    </a>
+    </Link>
   );
 };

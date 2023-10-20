@@ -9,6 +9,7 @@ import {
 } from "../../utils/format";
 import { paths } from "../../utils/paths";
 import { Socials } from "../Socials/Socials";
+import { Link } from "react-router-dom";
 
 type MovieInfoProps = {
   media: MovieExtraDetails | TvExtraDetails;
@@ -66,7 +67,7 @@ export const MovieInfo = ({ media }: MovieInfoProps) => {
                 <div className="text-right">
                   {directors.map((person, i) => (
                     <>
-                      <a href={paths.person(person.id)}>{person.name}</a>
+                      <Link to={paths.person(person.id)}>{person.name}</Link>
                       {i < directors?.length - 1 ? ", " : ""}
                     </>
                   ))}
@@ -95,9 +96,9 @@ export const MovieInfo = ({ media }: MovieInfoProps) => {
                     (genre, i, arr) =>
                       media.media_type && (
                         <>
-                          <a href={paths.genre(media.media_type, genre.id)}>
+                          <Link to={paths.genre(media.media_type, genre.id)}>
                             {genre.name}
-                          </a>
+                          </Link>
                           {i < arr.length - 1 ? ", " : ""}
                         </>
                       )

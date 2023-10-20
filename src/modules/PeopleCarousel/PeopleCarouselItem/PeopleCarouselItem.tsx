@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { NoPoster } from "../../../components/MediaCard/NoPoster";
 import { getProfile, getProfileSet } from "../../../services/images";
 import { Cast, Crew } from "../../../services/types";
@@ -9,7 +10,7 @@ type PeopleCarouselItemProps = {
 
 export const PeopleCarouselItem = ({ media }: PeopleCarouselItemProps) => {
   return (
-    <a href={paths.person(media.id)} className="w-48">
+    <Link to={paths.person(media.id)} className="w-48">
       <div className="transition-scale scale-95 duration-300 ease-in-out hover:scale-100">
         <picture>
           {media.profile_path ? (
@@ -27,6 +28,6 @@ export const PeopleCarouselItem = ({ media }: PeopleCarouselItemProps) => {
         </picture>
       </div>
       <span className="text-gray-100">{media.name}</span>
-    </a>
+    </Link>
   );
 };

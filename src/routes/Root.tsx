@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { Footer } from "../modules/Footer/Footer";
 import { MediaCarousel } from "../modules/MediaCarousel/MediaCarousel";
 import { MovieHero } from "../modules/MovieHero/MovieHero";
@@ -39,14 +40,14 @@ export const Root = () => {
   return (
     <div>
       {random.media_type === "movie" ? (
-        <a href={paths.media("movie", random.id)}>
+        <Link to={paths.media("movie", random.id)}>
           <MovieHero media={random} />
-        </a>
+        </Link>
       ) : null}
       {random.media_type === "tv" ? (
-        <a href={paths.media("tv", random.id)}>
+        <Link to={paths.media("tv", random.id)}>
           <TvSeriesHero media={random} />
-        </a>
+        </Link>
       ) : null}
       {movies.results ? (
         <MediaCarousel

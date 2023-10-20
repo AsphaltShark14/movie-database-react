@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MediaCard } from "../../components/MediaCard/MediaCard";
 import { MediaBase } from "../../services/types";
 
@@ -17,12 +18,12 @@ export const MediaCarousel = ({
       <div className="flex flex-row items-center px-12 py-2">
         <h2 className="text-2xl text-white">{title}</h2>
         <div className="flex-auto" />
-        <a
+        <Link
           className="transition-text opacity-80 duration-100 ease-in-out text-gray-100 hover:text-blue-600 hover:opacity-100"
-          href={href}
+          to={href}
         >
           Explore All
-        </a>
+        </Link>
       </div>
       <div className="relative">
         <div className="overflow-y-auto px-8 py-4">
@@ -32,12 +33,12 @@ export const MediaCarousel = ({
                 <MediaCard media={media} />
               </div>
             ))}
-            <a
+            <Link
               className="transition-text flex w-44 items-center justify-center duration-100 ease-in-out text-gray-100 hover:text-blue-600"
-              href={href}
+              to={href}
             >
               Explore All
-            </a>
+            </Link>
           </div>
         </div>
       </div>

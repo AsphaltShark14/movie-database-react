@@ -50,6 +50,7 @@ function App() {
             {
               path: paths.movie,
               element: <Overview />,
+              
             },
             {
               path: paths.movieInfoPhotos,

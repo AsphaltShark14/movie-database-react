@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Heart from "~/media/heart.svg";
 import Home from "~/media/home.svg";
 import Movie from "~/media/movie.svg";
@@ -10,44 +11,44 @@ export const Navbar = () => {
     <nav className="bg-black px-4 py-8 text-black">
       <ul className="flex flex-wrap content-center justify-around gap-10 md:w-10 md:flex-col md:justify-start">
         <li className="hover:opacity-80">
-          <a href={paths.index}>
+          <Link to={paths.index}>
             <img alt="home" src={Home} aria-label="home" className="h-6 w-6" />
-          </a>
+          </Link>
         </li>
         <li className="hover:opacity-80">
-          <a href={paths.movies}>
+          <Link to={paths.movies}>
             <img
               alt="movie"
               src={Movie}
               aria-label="Movies"
               className="h-6 w-6"
             />
-          </a>
+          </Link>
         </li>
         <li className="hover:opacity-80">
-          <a href={paths.tv}>
+          <Link to={paths.tv}>
             <img alt="tv" src={Tv} aria-label="tv" className="h-6 w-6" />
-          </a>
+          </Link>
         </li>
         <li className="hover:opacity-80">
-          <a href={paths.search}>
+          <Link to={paths.search}>
             <img
               alt="search"
               src={Search}
               aria-label="search"
               className="h-6 w-6"
             />
-          </a>
+          </Link>
         </li>
         <li className="hover:opacity-80">
-          <a href={paths.likes}>
+          <Link to={paths.likes}>
             <img
               alt="likes"
               src={Heart}
               aria-label="likes"
               className="h-6 w-6"
             />
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

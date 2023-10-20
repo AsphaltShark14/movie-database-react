@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { MovieHero } from "../../../modules/MovieHero/MovieHero";
 import { paths } from "../../../utils/paths";
 import { useMovieQuery } from "./Movie.utils";
@@ -22,8 +22,8 @@ export const Movie = () => {
     <div className="flex max-h-screen flex-col gap-4 overflow-y-scroll">
       <MovieHero media={movie} isDescription={false} />
       <div className="flex flex-row items-center justify-center gap-4">
-        <a
-          href={overviewHref}
+        <Link
+          to={overviewHref}
           className={clsx(
             "transition-text p-2 text-xl text-gray-100 uppercase opacity-70 duration-100 ease-in-out hover:opacity-100",
             {
@@ -31,11 +31,12 @@ export const Movie = () => {
                 overviewHref === location.pathname,
             }
           )}
+          preventScrollReset
         >
           Overview
-        </a>
-        <a
-          href={videoHref}
+        </Link>
+        <Link
+          to={videoHref}
           className={clsx(
             "transition-text p-2 text-xl text-gray-100 uppercase opacity-70 duration-100 ease-in-out hover:opacity-100",
             {
@@ -43,11 +44,12 @@ export const Movie = () => {
                 videoHref === location.pathname,
             }
           )}
+          preventScrollReset
         >
           Videos
-        </a>
-        <a
-          href={photoHref}
+        </Link>
+        <Link
+          to={photoHref}
           className={clsx(
             "transition-text p-2 text-xl text-gray-100 uppercase opacity-70 duration-100 ease-in-out hover:opacity-100",
             {
@@ -55,9 +57,10 @@ export const Movie = () => {
                 photoHref === location.pathname,
             }
           )}
+          preventScrollReset
         >
           Photos
-        </a>
+        </Link>
       </div>
       <Outlet />
     </div>

@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { Footer } from "../../modules/Footer/Footer";
 import { MediaCarousel } from "../../modules/MediaCarousel/MediaCarousel";
 import { MovieHero } from "../../modules/MovieHero/MovieHero";
@@ -44,9 +45,9 @@ export const Movies = () => {
   return (
     <div className="flex max-h-screen flex-col gap-4 overflow-y-scroll">
       {random ? (
-        <a href={paths.media("movie", random.id)}>
+        <Link to={paths.media("movie", random.id)}>
           <MovieHero media={random} />
-        </a>
+        </Link>
       ) : null}
       <MediaCarousel
         collection={popular?.results || []}
