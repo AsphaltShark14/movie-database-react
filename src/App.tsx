@@ -11,6 +11,7 @@ import { MoviePhotos } from "./routes/movie/Movie/Photos/MoviePhotos";
 import { MovieVideos } from "./routes/movie/Movie/Videos/MovieVideos";
 import { Movies } from "./routes/movie/Movies";
 import { MovieCategory } from "./routes/movie/categories/MovieCategory";
+import { Person } from "./routes/person/Person";
 import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
 import { TvShow } from "./routes/tv/TvShow/TvShow";
@@ -74,6 +75,10 @@ function App() {
         {
           path: paths.tvSeriesCategory,
           element: <TvSeriesCategory />,
+        },
+        {
+          path: paths.people,
+          element: <Person />,
         },
       ],
     },

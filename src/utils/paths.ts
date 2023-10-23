@@ -22,4 +22,5 @@ export const paths = {
   movieInfoVideos: "/movie/:movieId/videos",
   moviesCategory: "/movie/categories/:category",
   tvSeriesCategory: "/tv/categories/:category",
+  people: "/person/:personId",
 };
