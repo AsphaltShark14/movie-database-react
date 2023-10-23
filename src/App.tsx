@@ -14,6 +14,7 @@ import { MovieCategory } from "./routes/movie/categories/MovieCategory";
 import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
 import { TvShow } from "./routes/tv/TvShow/TvShow";
+import { TvSeriesCategory } from "./routes/tv/categories/TvSeriesCategory";
 import { paths } from "./utils/paths";
 
 function App() {
@@ -69,6 +70,10 @@ function App() {
         {
           path: paths.moviesCategory,
           element: <MovieCategory />,
+        },
+        {
+          path: paths.tvSeriesCategory,
+          element: <TvSeriesCategory />,
         },
       ],
     },

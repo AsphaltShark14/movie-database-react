@@ -8,7 +8,7 @@ type GetListItem = {
 };
 
 export const getListItem = ({ type = "movie", query }: GetListItem) => {
-  return categories[type].find((list) => list.query === query)?.title || query;
+  return categories[type].find((list) => list.query === query)?.title || "";
 };
 
 export function formatDate(date: string) {

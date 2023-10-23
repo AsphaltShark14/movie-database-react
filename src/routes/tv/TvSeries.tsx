@@ -63,22 +63,22 @@ export const TvSeries = () => {
       <MediaCarousel
         collection={airingToday?.results || []}
         title={getListItem({ query: "airing_today", type: "tv" })}
-        href={paths.movieCategory("airing_today")}
+        href={paths.tvCategory("airing_today")}
       />
       <MediaCarousel
         collection={onTheAir?.results || []}
         title={getListItem({ query: "on_the_air", type: "tv" })}
-        href={paths.movieCategory("on_the_air")}
+        href={paths.tvCategory("on_the_air")}
       />
       <MediaCarousel
         collection={popular?.results || []}
         title={getListItem({ query: "popular", type: "tv" })}
-        href={paths.movieCategory("popular")}
+        href={paths.tvCategory("popular")}
       />
       <MediaCarousel
         collection={topRated?.results || []}
         title={getListItem({ query: "top_rated", type: "tv" })}
-        href={paths.movieCategory("top_rated")}
+        href={paths.tvCategory("top_rated")}
       />
       <Footer />
     </div>

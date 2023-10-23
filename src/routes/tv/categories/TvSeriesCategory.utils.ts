@@ -2,13 +2,13 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { object, safeParse, string } from "valibot";
 import {
-  getMovies,
-  getMoviesQueryKey,
-  getTrendingMovies,
-  getTrendingMoviesQueryKey,
+  getTrendingTvSeries,
+  getTrendingTvSeriesQueryKey,
+  getTvSeries,
+  getTvSeriesQueryKey,
 } from "../../../services/tmdb";
 
-export const useMovieCategoryFeed = () => {
+export const useTvSeriesCategoryFeed = () => {
   const params = useParams();
 
   const parseResult = safeParse(object({ category: string() }), params);
@@ -21,8 +21,8 @@ export const useMovieCategoryFeed = () => {
 
   if (category === "trending") {
     const query = useQuery({
-      queryFn: getTrendingMovies,
-      queryKey: getTrendingMoviesQueryKey(),
+      queryFn: getTrendingTvSeries,
+      queryKey: getTrendingTvSeriesQueryKey(),
       refetchOnWindowFocus: false,
     });
 
@@ -30,8 +30,8 @@ export const useMovieCategoryFeed = () => {
   }
 
   const query = useInfiniteQuery({
-    queryFn: getMovies,
-    queryKey: getMoviesQueryKey({ query: category }),
+    queryFn: getTvSeries,
+    queryKey: getTvSeriesQueryKey({ query: category }),
     getNextPageParam: (lastPage) => {
       if (!lastPage.page) {
         return;

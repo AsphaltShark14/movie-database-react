@@ -2,10 +2,10 @@ import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { MediaGrid } from "../../../modules/MediaGrid/MediaGrid";
 import { getListItem } from "../../../utils/format";
-import { useMovieCategoryFeed } from "./MovieCategory.utils";
+import { useTvSeriesCategoryFeed } from "./TvSeriesCategory.utils";
 
-export const MovieCategory = () => {
-  const query = useMovieCategoryFeed();
+export const TvSeriesCategory = () => {
+  const query = useTvSeriesCategoryFeed();
   const params = useParams();
 
   const collection = useMemo(() => {
@@ -37,7 +37,7 @@ export const MovieCategory = () => {
   return (
     <div className="flex max-h-screen flex-col overflow-y-scroll">
       <h1 className="px-8 py-4 text-4xl">
-        {getListItem({ query: params.category, type: "movie" })}
+        {getListItem({ query: params.category, type: "tv" })}
       </h1>
       <div>
         <MediaGrid collection={collection} onEndReached={onEndReached} />
