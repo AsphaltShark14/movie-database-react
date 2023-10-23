@@ -3,9 +3,13 @@ import { TvBase } from "../../services/types";
 
 type TvSeriesHeroProps = {
   media: TvBase;
+  isDescription?: boolean;
 };
 
-export const TvSeriesHero = ({ media }: TvSeriesHeroProps) => {
+export const TvSeriesHero = ({
+  media,
+  isDescription = true,
+}: TvSeriesHeroProps) => {
   return (
     <section className="bg-black">
       <div className="relative aspect-square md:aspect-[3/2] lg:aspect-[25/9]">
@@ -31,9 +35,11 @@ export const TvSeriesHero = ({ media }: TvSeriesHeroProps) => {
               <div>{`${media.vote_count} Reviews`}</div>
             </div>
           </div>
-          <div className="text-left text-gray-100 line-clamp-[7]">
-            {media.overview}
-          </div>
+          {isDescription ? (
+            <div className="text-left text-gray-100 line-clamp-[7]">
+              {media.overview}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

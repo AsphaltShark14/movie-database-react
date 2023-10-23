@@ -7,6 +7,7 @@ import {
   MovieBase,
   MovieExtraDetails,
   TvBase,
+  TvExtraDetails,
 } from "./types";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
@@ -170,4 +171,28 @@ export const getMovie: QueryFunction<
     },
   });
   return { ...result, media_type: "movie" as const };
+};
+
+type GetTvShowArgs = {
+  id: string;
+};
+
+export const getTvShowQueryKey = (args: GetTvShowArgs) => {
+  return ["tvshow", args] as const;
+};
+
+export const getTvShow: QueryFunction<
+  TvExtraDetails,
+  ReturnType<typeof getTvShowQueryKey>
+> = async ({ queryKey: [, args] }) => {
+  const result = await jsonFetcher<TvExtraDetails>({
+    path: `/tv/${args.id}`,
+    query: {
+      api_key: apiKey,
+      append_to_response: "credits,external_ids",
+      include_image_language: "en",
+    },
+  });
+
+  return { ...result, media_type: "tv" as const };
 };

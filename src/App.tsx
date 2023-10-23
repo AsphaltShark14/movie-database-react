@@ -12,7 +12,7 @@ import { MoviePhotos } from "./routes/movie/Movie/Photos/MoviePhotos";
 import { MovieVideos } from "./routes/movie/Movie/Videos/MovieVideos";
 import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
-import { TvShow } from "./routes/tv/[tvId]/TvShow";
+import { TvShow } from "./routes/tv/TvShow/TvShow";
 import { paths } from "./utils/paths";
 
 function App() {
