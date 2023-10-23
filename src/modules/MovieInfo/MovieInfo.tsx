@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { getPoster, getPosterSet } from "../../services/images";
 import { MovieExtraDetails, TvExtraDetails } from "../../services/types";
 import {
@@ -9,14 +10,12 @@ import {
 } from "../../utils/format";
 import { paths } from "../../utils/paths";
 import { Socials } from "../Socials/Socials";
-import { Link } from "react-router-dom";
 
 type MovieInfoProps = {
   media: MovieExtraDetails | TvExtraDetails;
 };
 
 export const MovieInfo = ({ media }: MovieInfoProps) => {
-  console.log(media);
   const directors = useMemo(() => {
     return (
       media.credits?.crew?.filter((person) => person.job === "Director") || []

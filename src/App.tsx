@@ -5,11 +5,12 @@ import { ErrorPage } from "./routes/ErrorPage/ErrorPage";
 import { Layout } from "./routes/Layout";
 import { Root } from "./routes/Root";
 import { Likes } from "./routes/likes/Likes";
-import { Movies } from "./routes/movie/Movies";
 import { Movie } from "./routes/movie/Movie/Movie";
 import { Overview } from "./routes/movie/Movie/Overview/Overview";
 import { MoviePhotos } from "./routes/movie/Movie/Photos/MoviePhotos";
 import { MovieVideos } from "./routes/movie/Movie/Videos/MovieVideos";
+import { Movies } from "./routes/movie/Movies";
+import { MovieCategory } from "./routes/movie/categories/MovieCategory";
 import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
 import { TvShow } from "./routes/tv/TvShow/TvShow";
@@ -50,7 +51,6 @@ function App() {
             {
               path: paths.movie,
               element: <Overview />,
-              
             },
             {
               path: paths.movieInfoPhotos,
@@ -65,6 +65,10 @@ function App() {
         {
           path: paths.tvShow,
           element: <TvShow />,
+        },
+        {
+          path: paths.moviesCategory,
+          element: <MovieCategory />,
         },
       ],
     },

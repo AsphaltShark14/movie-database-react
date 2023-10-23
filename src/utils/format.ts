@@ -4,7 +4,7 @@ import { languages } from "./constants/languages";
 
 type GetListItem = {
   type: MediaBase["media_type"];
-  query: string;
+  query?: string;
 };
 
 export const getListItem = ({ type = "movie", query }: GetListItem) => {
