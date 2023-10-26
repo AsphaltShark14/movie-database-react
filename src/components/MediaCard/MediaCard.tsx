@@ -17,7 +17,10 @@ export const MediaCard = ({ media }: MediaCardProps) => {
   }, [media]);
 
   return (
-    <Link to={paths.media(media.media_type, media.id)} className="w-48">
+    <Link
+      to={paths.media(media.media_type, media.id)}
+      className="w-full flex flex-col content-center flex-wrap md:block md:w-48"
+    >
       {!!media.poster_path ? (
         <div className="transition-scale scale-95 duration-300 ease-in-out hover:scale-100">
           <picture>
