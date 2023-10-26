@@ -9,7 +9,6 @@ import { paths } from "../../utils/paths";
 
 export const Navbar = () => {
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <nav className="bg-black px-4 py-8 text-black">
