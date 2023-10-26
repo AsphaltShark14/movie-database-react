@@ -1,3 +1,4 @@
+import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { getProfile, getProfileSet } from "../../services/images";
 import { PersonDetails } from "../../services/types";
 import { formatDate } from "../../utils/format";
@@ -83,7 +84,7 @@ export const PersonHero = ({ person }: PersonHeroProps) => {
             ) : null}
           </div>
 
-          <div>
+          <div className="flex justify-between">
             <Socials
               isPerson
               links={{
@@ -91,6 +92,7 @@ export const PersonHero = ({ person }: PersonHeroProps) => {
                 homepage: person.homepage,
               }}
             />
+            <LikeButton />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { getPoster, getPosterSet } from "../../services/images";
 import { MovieExtraDetails, TvExtraDetails } from "../../services/types";
 import {
@@ -39,6 +40,7 @@ export const MovieInfo = ({ media }: MovieInfoProps) => {
         </div>
 
         <div className="flex flex-col gap-6">
+          <LikeButton />
           {media.overview ? (
             <div>
               <h2 className="mb-4 text-3xl text-left">Storyline</h2>
