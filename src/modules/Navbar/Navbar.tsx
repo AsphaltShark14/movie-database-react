@@ -5,7 +5,7 @@ import Home from "~/media/home.svg";
 import Movie from "~/media/movie.svg";
 import Search from "~/media/search.svg";
 import Tv from "~/media/tv.svg";
-import { paths } from "~/utils/paths";
+import { paths } from "../../utils/paths";
 
 export const Navbar = () => {
   const location = useLocation();
