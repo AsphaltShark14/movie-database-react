@@ -1,10 +1,12 @@
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import { ErrorPage } from "./routes/ErrorPage/ErrorPage";
 import { Layout } from "./routes/Layout";
 import { Root } from "./routes/Root";
 import { Likes } from "./routes/likes/Likes";
+import { LikesExpand } from "./routes/likes/LikesExpand/LikesExpand";
 import { Movie } from "./routes/movie/Movie/Movie";
 import { Overview } from "./routes/movie/Movie/Overview/Overview";
 import { MoviePhotos } from "./routes/movie/Movie/Photos/MoviePhotos";
@@ -16,6 +18,7 @@ import { Search } from "./routes/search/Search";
 import { TvSeries } from "./routes/tv/TvSeries";
 import { TvShow } from "./routes/tv/TvShow/TvShow";
 import { TvSeriesCategory } from "./routes/tv/categories/TvSeriesCategory";
+import { store } from "./store/store";
 import { paths } from "./utils/paths";
 
 function App() {
@@ -80,13 +83,19 @@ function App() {
           path: paths.people,
           element: <Person />,
         },
+        {
+          path: paths.likesExpand,
+          element: <LikesExpand />,
+        },
       ],
     },
   ]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </QueryClientProvider>
   );
 }

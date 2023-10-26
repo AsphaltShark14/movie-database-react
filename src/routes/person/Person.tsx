@@ -19,7 +19,6 @@ export const Person = () => {
           ...(person.combined_credits?.cast || []),
           ...(person.combined_credits?.crew || []),
         ]}
-        onEndReached={() => {}}
       />
     </div>
   );

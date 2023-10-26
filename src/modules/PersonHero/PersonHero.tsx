@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { getProfile, getProfileSet } from "../../services/images";
 import { PersonDetails } from "../../services/types";
+import { hasPersonLikeSelector } from "../../store/selectors/peopleSelector";
+import { addPerson, removePerson } from "../../store/slices/peopleSlice";
 import { formatDate } from "../../utils/format";
 import { Socials } from "../Socials/Socials";
 import { calculateAge } from "./PersonHero.utils";
@@ -10,6 +13,18 @@ type PersonHeroProps = {
 };
 
 export const PersonHero = ({ person }: PersonHeroProps) => {
+  const dispatch = useDispatch();
+  const hasLike = useSelector(hasPersonLikeSelector(person.id));
+
+  const handleClick = () => {
+    if (hasLike) {
+      dispatch(removePerson(person));
+      return;
+    }
+
+    dispatch(addPerson(person));
+  };
+
   return (
     <section className="flex justify-center p-6">
       <div className="flex flex-row items-center gap-8">
@@ -92,7 +107,7 @@ export const PersonHero = ({ person }: PersonHeroProps) => {
                 homepage: person.homepage,
               }}
             />
-            <LikeButton />
+            <LikeButton hasLike={hasLike} onClick={handleClick} />
           </div>
         </div>
       </div>

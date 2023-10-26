@@ -5,6 +5,7 @@ export const categories = {
     { query: "top_rated", title: "Top Rated Movies" },
     { query: "upcoming", title: "Upcoming Movies" },
     { query: "now_playing", title: "Now Playing Movies" },
+    { query: "favorite", title: "Your favorite Movies" },
   ],
   person: [],
   tv: [
@@ -13,5 +14,6 @@ export const categories = {
     { query: "top_rated", title: "Top Rated TV Shows" },
     { query: "on_the_air", title: "Currently Airing TV Shows" },
     { query: "airing_today", title: "TV Shows Airing Today" },
+    { query: "favorite", title: "Your favorite TV Shows" },
   ],
 };

@@ -5,7 +5,7 @@ import { MediaBase } from "../../services/types";
 
 type MediaGridProps = {
   collection: MediaBase[];
-  onEndReached: (atBottom: boolean) => void;
+  onEndReached?: (atBottom: boolean) => void;
 };
 
 export const MediaGrid = ({ collection, onEndReached }: MediaGridProps) => {

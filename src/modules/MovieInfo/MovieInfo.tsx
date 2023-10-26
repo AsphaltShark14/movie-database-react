@@ -1,8 +1,13 @@
 import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LikeButton } from "../../components/LikeButton/LikeButton";
 import { getPoster, getPosterSet } from "../../services/images";
 import { MovieExtraDetails, TvExtraDetails } from "../../services/types";
+import { hasMovieLikeSelector } from "../../store/selectors/moviesSelector";
+import { hasTvLikeSelector } from "../../store/selectors/tvSelector";
+import { addMovie, removeMovie } from "../../store/slices/moviesSlice";
+import { addTvShow, removeTvShow } from "../../store/slices/tvSlice";
 import {
   formatCurrency,
   formatDate,
@@ -17,6 +22,22 @@ type MovieInfoProps = {
 };
 
 export const MovieInfo = ({ media }: MovieInfoProps) => {
+  const isMovie = media.media_type === "movie";
+
+  const dispatch = useDispatch();
+  const hasLike = useSelector(
+    isMovie ? hasMovieLikeSelector(media.id) : hasTvLikeSelector(media.id)
+  );
+
+  const handleClick = () => {
+    if (hasLike) {
+      dispatch(isMovie ? removeMovie(media) : removeTvShow(media));
+      return;
+    }
+
+    dispatch(isMovie ? addMovie(media) : addTvShow(media));
+  };
+
   const directors = useMemo(() => {
     return (
       media.credits?.crew?.filter((person) => person.job === "Director") || []
@@ -40,7 +61,7 @@ export const MovieInfo = ({ media }: MovieInfoProps) => {
         </div>
 
         <div className="flex flex-col gap-6">
-          <LikeButton />
+          <LikeButton hasLike={hasLike} onClick={handleClick} />
           {media.overview ? (
             <div>
               <h2 className="mb-4 text-3xl text-left">Storyline</h2>

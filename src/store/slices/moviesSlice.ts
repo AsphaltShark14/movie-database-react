@@ -3,7 +3,7 @@ import { MovieBase } from "../../services/types";
 
 const initialState: MovieBase[] = [];
 
-const movieSlice = createSlice({
+export const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
@@ -11,11 +11,11 @@ const movieSlice = createSlice({
       state.push(action.payload);
     },
     removeMovie: (state, action) => {
-      return state.filter((movie) => movie.id != action.payload.id);
+      return state.filter((movie) => movie.id !== action.payload.id);
     },
   },
 });
 
-const { actions } = movieSlice;
+const { actions } = moviesSlice;
 
 export const { addMovie, removeMovie } = actions;

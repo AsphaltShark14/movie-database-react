@@ -23,4 +23,6 @@ export const paths = {
   moviesCategory: "/movie/categories/:category",
   tvSeriesCategory: "/tv/categories/:category",
   people: "/person/:personId",
+  likesExpand: "/likes/:type",
+  likesType: (mediaType: MediaBase["media_type"]) => `/likes/${mediaType}`,
 };
