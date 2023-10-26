@@ -1,28 +1,43 @@
-# React + TypeScript + Vite
+# Todo Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Responsive ToDo Web Application made with TypeScript, React, Redux and SCSS
 
-Currently, two official plugins are available:
+## Live Demo:
+[AsphaltShark14/movie-database-react](https://superb-cupcake-ecb463.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
 
-## Expanding the ESLint configuration
+- Browse through movies and tv shows
+- Look for multiple categories (trending, popular etc.)
+- Look through the detailed view of movies, tv shows and people
+- Add/remove favorites
+- Search for the movies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the Repository:**
+  SSH:
+   ```bash
+   git clone git@github.com:AsphaltShark14/movie-database-react.git
+   cd movie-database-react
+   yarn
+   yarn start
+   ```
+  or HTTPS:
+  ```bash
+   git clone https://github.com/AsphaltShark14/movie-database-react.git
+   cd movie-database-react
+   yarn
+   yarn start
+  ```
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Technologies Used
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# movie-database-react
+- **Typescript**
+- **React**
+- **Redux**
+- **Tanstack Query**
+- **React Router**
+- **Tailwind**  
+- **Valibot**
+- **Vite**

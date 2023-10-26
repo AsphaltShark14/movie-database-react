@@ -25,4 +25,5 @@ export const paths = {
   people: "/person/:personId",
   likesExpand: "/likes/:type",
   likesType: (mediaType: MediaBase["media_type"]) => `/likes/${mediaType}`,
+  genres: "/genre/:id/:mediaType",
 };
