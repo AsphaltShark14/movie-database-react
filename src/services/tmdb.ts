@@ -6,6 +6,7 @@ import {
   MediaBase,
   MovieBase,
   MovieExtraDetails,
+  PersonDetails,
   TvBase,
   TvExtraDetails,
 } from "./types";
@@ -195,4 +196,28 @@ export const getTvShow: QueryFunction<
   });
 
   return { ...result, media_type: "tv" as const };
+};
+
+type getPersonArgs = {
+  id: string;
+};
+
+export const getPersonQueryKey = (args: getPersonArgs) => {
+  return ["person", args] as const;
+};
+
+export const getPerson: QueryFunction<
+  PersonDetails,
+  ReturnType<typeof getPersonQueryKey>
+> = async ({ queryKey: [, args] }) => {
+  const result = await jsonFetcher<PersonDetails>({
+    path: `/person/${args.id}`,
+    query: {
+      api_key: apiKey,
+      append_to_response: "combined_credits,external_ids",
+      include_image_language: "en",
+    },
+  });
+
+  return { ...result, media_type: "person" };
 };
