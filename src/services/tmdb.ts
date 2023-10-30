@@ -4,6 +4,7 @@ import {
   Collection,
   Genre,
   MediaBase,
+  MediaDetails,
   MovieBase,
   MovieExtraDetails,
   PersonDetails,
@@ -220,4 +221,48 @@ export const getPerson: QueryFunction<
   });
 
   return { ...result, media_type: "person" };
+};
+
+type GetMediaByGenreArgs = {
+  media: MediaBase["media_type"];
+  genre: string;
+};
+
+export const getMediaByGenreQueryKey = (args: GetMediaByGenreArgs) => {
+  return ["mediaGenre", args] as const;
+};
+
+export const getMediaByGenre: QueryFunction<
+  Collection<MediaBase>,
+  ReturnType<typeof getMediaByGenreQueryKey>
+> = async ({ queryKey: [, args], pageParam = 1 }) => {
+  const result = await jsonFetcher<Collection<MediaBase>>({
+    path: `/discover/${args.media}`,
+    query: {
+      api_key: apiKey,
+      append_to_response: "genres",
+      page: pageParam,
+      with_genres: args.genre,
+    },
+  });
+
+  const results = result.results?.map((item) => ({
+    ...item,
+    media_type: args.media,
+  })) as MediaBase[];
+
+  const firstId = results[0].id;
+
+  const first = await jsonFetcher<MediaDetails>({
+    path: `/${args.media}/${firstId}`,
+    query: {
+      api_key: apiKey,
+    },
+  });
+
+  const found = first.genres?.find(
+    (entry) => entry.id.toString() === args.genre
+  );
+
+  return { ...result, genre: found, results };
 };

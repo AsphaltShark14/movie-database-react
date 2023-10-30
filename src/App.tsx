@@ -5,7 +5,8 @@ import "./App.css";
 import { ErrorPage } from "./routes/ErrorPage/ErrorPage";
 import { Layout } from "./routes/Layout";
 import { Root } from "./routes/Root";
-import { Genre } from "./routes/genre/Genre";
+import { MovieGenre } from "./routes/genre/MovieGenre/MovieGenre";
+import { TvGenre } from "./routes/genre/TvGenre/TvGenre";
 import { Likes } from "./routes/likes/Likes";
 import { LikesExpand } from "./routes/likes/LikesExpand/LikesExpand";
 import { Movie } from "./routes/movie/Movie/Movie";
@@ -89,8 +90,12 @@ function App() {
           element: <LikesExpand />,
         },
         {
-          path: paths.genres,
-          element: <Genre />,
+          path: paths.movieGenre,
+          element: <MovieGenre />,
+        },
+        {
+          path: paths.tvGenre,
+          element: <TvGenre />,
         },
       ],
     },
